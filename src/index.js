@@ -2,10 +2,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import userRoute from "./routes/users.js"
 import { logRequest } from "./middleware/logs.js"
-import { getAllUsersTable } from "./models/users.js";
+import { config } from "dotenv";
 
 const app = express()
-const port = 4000
+const port = process.env.PORT || 5000
 
 // untuk mendapat req body dari api
 app.use(express.json())
