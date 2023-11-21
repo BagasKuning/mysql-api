@@ -8,8 +8,8 @@ const app = express()
 const port = process.env.PORT || 5000
 
 // untuk mendapat req body dari api
-app.use(express.json())
-// app.use(bodyParser.json())
+// app.use(express.json())
+app.use(bodyParser.json())
 
 app.use("/users", userRoute)
 
