@@ -36,8 +36,20 @@ export const createNewUser = (req, res) => {
 
 export const updateUsers = (req, res, next) => {
     const { id } = req.params
-    res.json({
-        message: "data berhasil di update"
+    const sqlQuery = `UPDATE users SET name='${req.body.name}', email='${req.body.email}',
+                     address='${req.body.address}' WHERE users.id = ${id}`
+    dbPool.execute(sqlQuery, (err, rows, field) => {
+        if(err){
+            res.status(500).json({
+                message: "Failed Update",
+                message_server: err
+            })
+        } else {
+            res.json({
+                message: "Update Success",
+                data: req.body
+            })
+        }
     })
 }
 
